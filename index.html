@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>123</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div id="app" class="center-screen" style="display: flex; flex-direction: column">
+        <h1>Слышишь ты Лизка ты этот ну будешь этим валентином моим?</h1>
+        <img src="https://media1.tenor.com/m/8CzyMwQ5JNsAAAAC/minions-minion.gif" alt="" />
+        <button type="button" class="btn btn-danger" @click="changeText('noButton')" id="nooo">
+            <h2 class="nooo" @click="changeText('heading') ">
+                {{ currentHeaderText }}
+            </h2>
+        </button>
+        <div class="buttones">
+            <button type="button" class="btn btn-success mr-2" :style="{ fontSize: yesButtonSize + 'rem' }"
+                :key="yesButtonSize" @click="yesButton" id="yesbut">
+                Да
+            </button>
+
+            <button type="button" class="btn btn-danger" @click="changeText('noButton')" id="nobut">
+                <h2>Нет</h2>
+            </button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                headerText: [
+                    "",
+                    "Ты уверена ВТФ?",
+                    "Реально нет?",
+                    "НУ пПЖЖЖЖЖ",
+                    "Я заплачу ЩЯ",
+                    "КОшмар",
+                    "Ну ПРОШУУУУУУ",
+                    "ЗАЧО ФРЕНДЗОНА",
+                    "СЛЫШИШЬ ТЫ НАХЕР ты меня троллила получаеца",
+                    "МДААААААА",
+                    "НУ передумай пЖЖЖ",
+                    "Я УБИВАЮ СЕБЯ",
+                ],
+                confirmationMessages: [
+                    "НУ КААААААК?",
+                    "Ты реально не таво самого меня?",
+                ],
+                currentHeaderTextIndex: 0,
+                currentConfirmationIndex: 0,
+                yesButtonSize: 1,
+            },
+            methods: {
+                changeText(button) {
+                    if (button === "noButton") {
+                        this.currentHeaderTextIndex =
+                            (this.currentHeaderTextIndex + 1) % this.headerText.length;
+                        this.currentConfirmationIndex =
+                            (this.currentConfirmationIndex + 1) %
+                            this.confirmationMessages.length;
+                        this.yesButtonSize += 5;
+                    }
+                },
+                yesButton() {
+                    window.location.href = "yes.html";
+                },
+            },
+            computed: {
+                currentHeaderText() {
+                    return this.headerText[this.currentHeaderTextIndex];
+                },
+                currentConfirmationText() {
+                    return this.confirmationMessages[this.currentConfirmationIndex];
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
